@@ -5,18 +5,23 @@ import cjminecraft.core.client.gui.ISpecialOverlayElement;
 import cjminecraft.core.client.gui.element.ElementBase;
 import cjminecraft.core.client.gui.overlay.OverlayBase;
 import cjminecraft.core.inventory.InventoryUtils;
-import cjminecraft.multimeters.Multimeters;
 import cjminecraft.multimeters.client.gui.overlay.OverlayEnergy;
 import cjminecraft.multimeters.client.gui.overlay.OverlayFluid;
 import cjminecraft.multimeters.client.gui.overlay.OverlayInventory;
-import cjminecraft.multimeters.client.gui.overlay.OverlayMultimeterBase;
 import cjminecraft.multimeters.config.MultimetersConfig;
 import cjminecraft.multimeters.init.MultimetersItems;
 import com.google.common.collect.Sets;
 import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
+/**
+ * The multimeter gui
+ * @author CJMinecraft
+ */
 public class GuiMultimeterOverlay extends GuiOverlay {
 
     public static GuiMultimeterOverlay INSTANCE;
@@ -25,6 +30,9 @@ public class GuiMultimeterOverlay extends GuiOverlay {
     private OverlayEnergy energyOverlay;
     private OverlayFluid fluidOverlay;
 
+    /**
+     * Initialise the gui
+     */
     public GuiMultimeterOverlay() {
         super();
         addOverlay(this.inventoryOverlay = new OverlayInventory(this, MultimetersConfig.GUI.OFFSET_X, this.height - MultimetersConfig.GUI.OFFSET_Y));
@@ -45,6 +53,9 @@ public class GuiMultimeterOverlay extends GuiOverlay {
         super.drawScreen();
     }
 
+    /**
+     * Update the positions of the multimeter overlays depending on the config and the overlays which are active
+     */
     public void updatePositions() {
         if (this.energyOverlay.isEnabled()) {
             this.energyOverlay.setPosition(MultimetersConfig.GUI.OFFSET_X, this.height - MultimetersConfig.GUI.OFFSET_Y - this.energyOverlay.getHeight());
@@ -61,6 +72,9 @@ public class GuiMultimeterOverlay extends GuiOverlay {
         this.energyOverlay.energyBar.setSize(MultimetersConfig.GUI.ENERGY_BAR_WIDTH, MultimetersConfig.GUI.ENERGY_BAR_HEIGHT);
     }
 
+    /**
+     * @return where the overlay text should be drawn from
+     */
     private int getOverlayTextX() {
         int width = 0;
         for (OverlayBase overlay : this.overlays)
@@ -73,6 +87,7 @@ public class GuiMultimeterOverlay extends GuiOverlay {
     protected void drawForegroundLayer() {
         super.drawForegroundLayer();
 
+        // Get the overlay text
         List<String> overlayText = new ArrayList<>();
         for (OverlayBase overlay : this.overlays) {
             if (overlay.isEnabled() && overlay.isVisible()) {
@@ -84,10 +99,11 @@ public class GuiMultimeterOverlay extends GuiOverlay {
                 }
             }
         }
-        HashSet<String> newText = Sets.newHashSet(overlayText);
+        HashSet<String> newText = Sets.newHashSet(overlayText); // Remove any duplicate lines
         Iterator<String> iterator = newText.iterator();
         int index = 0;
         while (iterator.hasNext()) {
+            // Draw the text
             this.fontRenderer.drawStringWithShadow(iterator.next(), getOverlayTextX(), this.height - MultimetersConfig.GUI.OFFSET_Y - ((index + 1) * 10), 0xFFFFFF);
             index++;
         }

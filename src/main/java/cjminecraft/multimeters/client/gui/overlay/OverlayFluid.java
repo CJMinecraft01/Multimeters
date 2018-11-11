@@ -6,15 +6,14 @@ import cjminecraft.core.client.gui.element.ElementFluidBar;
 import cjminecraft.core.client.gui.overlay.OverlayBase;
 import cjminecraft.core.fluid.FluidUtils;
 import cjminecraft.core.inventory.InventoryUtils;
-import cjminecraft.multimeters.Multimeters;
 import cjminecraft.multimeters.config.MultimetersConfig;
 import cjminecraft.multimeters.init.MultimetersItems;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidTankInfo;
 
 import java.util.ArrayList;
@@ -78,8 +77,8 @@ public class OverlayFluid extends OverlayMultimeterBase {
     }
 
     @Override
-    public boolean hasSupport(World world, BlockPos pos, EnumFacing side) {
-        return FluidUtils.hasSupport(world.getTileEntity(pos), side);
+    public boolean hasSupport(TileEntity te, EnumFacing side) {
+        return FluidUtils.hasSupport(te, side);
     }
 
     @Override

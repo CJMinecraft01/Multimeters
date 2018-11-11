@@ -11,17 +11,21 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * The main class for the multimeters mod
+ * @author CJMinecraft
+ */
 @Mod(modid = Multimeters.MODID, name = Multimeters.NAME, version = Multimeters.VERSION, dependencies = Multimeters.DEPENDENCIES, acceptedMinecraftVersions = Multimeters.ACCEPTED_MINECRAFT_VERSIONS, updateJSON = Multimeters.UPDATE_JSON)
 public class Multimeters {
 
     public static final String MODID = "multimeters";
-    public static final String NAME = "Multimeters";
-    public static final String VERSION = "${version}";
-    public static final String DEPENDENCIES = "before:cjcore@[0.0.4.1,)";
-    public static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2]";
-    public static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.ServerProxy";
-    public static final String CLIENT_PROXY_CLASS = "cjminecraft.multimeters.proxy.ClientProxy";
-    public static final String UPDATE_JSON = "https://raw.githubusercontent.com/CJMinecraft01/Multimeters/1.12/update.json";
+    static final String NAME = "Multimeters";
+    static final String VERSION = "${version}";
+    static final String DEPENDENCIES = "before:cjcore@[0.0.4.1,)";
+    static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2]";
+    private static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.ServerProxy";
+    private static final String CLIENT_PROXY_CLASS = "cjminecraft.multimeters.proxy.ClientProxy";
+    static final String UPDATE_JSON = "https://raw.githubusercontent.com/CJMinecraft01/Multimeters/1.12/update.json";
     public static final Logger LOGGER = LogManager.getFormatterLogger(MODID);
 
     @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)

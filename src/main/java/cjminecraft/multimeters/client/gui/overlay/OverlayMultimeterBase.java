@@ -8,17 +8,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+/**
+ * The base multimeter overlay class
+ *
+ * @author CJMinecraft
+ */
 public abstract class OverlayMultimeterBase extends OverlayBase {
 
-    protected ElementItemSlot targetedBlock;
-    protected BlockPos targetPos = null;
-    protected EnumFacing targetSide = null;
+    ElementItemSlot targetedBlock;
+    BlockPos targetPos = null;
+    EnumFacing targetSide = null;
     private ItemStack multimeter = ItemStack.EMPTY;
 
     /**
@@ -56,7 +62,7 @@ public abstract class OverlayMultimeterBase extends OverlayBase {
                 updateOverlay(this.gui.mc.player.getHeldItemMainhand());
             else if (hasSupport(this.gui.mc.player.getHeldItemOffhand()))
                 updateOverlay(this.gui.mc.player.getHeldItemOffhand());
-            else if (hasSupport(this.gui.mc.world, this.targetPos, this.targetSide))
+            else if (hasSupport(this.gui.mc.world.getTileEntity(this.targetPos), this.targetSide))
                 updateOverlay(ItemStack.EMPTY);
             else
                 setEnabled(false);
@@ -66,6 +72,11 @@ public abstract class OverlayMultimeterBase extends OverlayBase {
         }
     }
 
+    /**
+     * Update the overlay data: e.g. whether to sync with an item or a block
+     *
+     * @param inventory The item which has the correct support for this multimeter. Will be empty if we are targeting a block
+     */
     public void updateOverlay(ItemStack inventory) {
         if (inventory.isEmpty())
             // Targeting a block
@@ -75,12 +86,37 @@ public abstract class OverlayMultimeterBase extends OverlayBase {
             this.targetedBlock.setStack(inventory);
     }
 
-    public abstract boolean hasSupport(World world, BlockPos pos, EnumFacing side);
+    /**
+     * Is the given {@link TileEntity} supported by this multimeter?
+     *
+     * @param te   The {@link TileEntity} to test
+     * @param side The side of the {@link TileEntity} to test
+     * @return whether the given {@link TileEntity} is supported
+     */
+    public abstract boolean hasSupport(TileEntity te, EnumFacing side);
 
+    /**
+     * Is the given {@link ItemStack} supported by this multimeter?
+     *
+     * @param stack The {@link ItemStack} to test
+     * @return whether the given {@link ItemStack} is supported
+     */
     public abstract boolean hasSupport(ItemStack stack);
 
+    /**
+     * Does the player have the the multimeter for this gui in their hotbar
+     *
+     * @param player The {@link EntityPlayer} to test
+     * @return whether the player has the right multimeter for this gui in their hotbar
+     */
     public abstract boolean hasMultimeterInHotbar(EntityPlayer player);
 
+    /**
+     * Find the multimeter for this gui in the player's hotbar (get the actual multimeter item)
+     *
+     * @param player The {@link EntityPlayer} to test
+     * @return the multimeter for this gui from the player's hotbar
+     */
     public abstract ItemStack findMultimeterInHotbar(EntityPlayer player);
 
     /**
@@ -100,6 +136,5 @@ public abstract class OverlayMultimeterBase extends OverlayBase {
 
     @Override
     public void drawForeground() {
-
     }
 }

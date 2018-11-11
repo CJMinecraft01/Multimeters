@@ -5,14 +5,12 @@ import cjminecraft.core.client.gui.element.ElementEnergyBar;
 import cjminecraft.core.config.CJCoreConfig;
 import cjminecraft.core.energy.EnergyUtils;
 import cjminecraft.core.inventory.InventoryUtils;
-import cjminecraft.multimeters.Multimeters;
 import cjminecraft.multimeters.config.MultimetersConfig;
 import cjminecraft.multimeters.init.MultimetersItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class OverlayEnergy extends OverlayMultimeterBase {
 
@@ -47,8 +45,8 @@ public class OverlayEnergy extends OverlayMultimeterBase {
     }
 
     @Override
-    public boolean hasSupport(World world, BlockPos pos, EnumFacing side) {
-        return EnergyUtils.hasSupport(world.getTileEntity(pos), side);
+    public boolean hasSupport(TileEntity te, EnumFacing side) {
+        return EnergyUtils.hasSupport(te, side);
     }
 
     @Override

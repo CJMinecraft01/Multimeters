@@ -2,6 +2,10 @@ package cjminecraft.multimeters.enums;
 
 import net.minecraft.util.IStringSerializable;
 
+/**
+ * The enum containing the different types of multimeters
+ * @author CJMinecraft
+ */
 public enum EnumMultimeterType implements IStringSerializable {
 
     ENERGY(0, "energy"), ITEM(1, "item"), FLUID(2, "fluid");

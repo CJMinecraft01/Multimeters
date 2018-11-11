@@ -17,9 +17,17 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * The event handler for the mod
+ * @author CJMinecraft
+ */
 @Mod.EventBusSubscriber(modid = Multimeters.MODID)
 public class MultimetersEvents {
 
+    /**
+     * Unlocks the recipe for a multimeter if the item crafted is supported by a multimeter
+     * @param event The crafting event
+     */
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void onItemCraft(PlayerEvent.ItemCraftedEvent event) {
@@ -31,6 +39,10 @@ public class MultimetersEvents {
             event.player.unlockRecipes(new ResourceLocation[] { new ResourceLocation(Multimeters.MODID, "multimeter_fluid") });
     }
 
+    /**
+     * Unlocks the recipe for a multimeter if the block placed is supported by a multimeter
+     * @param event The block placed event
+     */
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void onBlockPlaced(BlockEvent.PlaceEvent event) {
@@ -45,11 +57,14 @@ public class MultimetersEvents {
             event.getPlayer().unlockRecipes(new ResourceLocation[] { new ResourceLocation(Multimeters.MODID, "multimeter_fluid") });
     }
 
+    /**
+     * Handles the updating of the config when the config is changed
+     * @param event The {@link ConfigChangedEvent}
+     */
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent event) {
         if (event.getModID().equals(Multimeters.MODID)) {
             ConfigManager.sync(Multimeters.MODID, Config.Type.INSTANCE);
-            GuiMultimeterOverlay.INSTANCE.updatePositions();
         }
     }
 }

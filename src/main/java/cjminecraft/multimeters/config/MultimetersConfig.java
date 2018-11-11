@@ -5,6 +5,10 @@ import cjminecraft.core.client.gui.element.ElementFluidBar;
 import cjminecraft.multimeters.Multimeters;
 import net.minecraftforge.common.config.Config;
 
+/**
+ * The configuration class for the mod
+ * @author CJMinecraft
+ */
 @Config(modid = Multimeters.MODID, category = "")
 public class MultimetersConfig {
 

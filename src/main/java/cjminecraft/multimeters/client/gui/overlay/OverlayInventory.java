@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nullable;
@@ -62,8 +61,8 @@ public class OverlayInventory extends OverlayMultimeterBase {
     }
 
     @Override
-    public boolean hasSupport(World world, BlockPos pos, EnumFacing side) {
-        return InventoryUtils.hasSupport(world.getTileEntity(pos), side);
+    public boolean hasSupport(TileEntity te, EnumFacing side) {
+        return InventoryUtils.hasSupport(te, side);
     }
 
     @Override
