@@ -21,6 +21,7 @@ public class Multimeters {
     public static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2]";
     public static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.ServerProxy";
     public static final String CLIENT_PROXY_CLASS = "cjminecraft.multimeters.proxy.ClientProxy";
+    public static final String VERSION_CHECKER_URL = "";
     public static final Logger LOGGER = LogManager.getFormatterLogger(MODID);
 
     @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)
