@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Multimeters.MODID, name = Multimeters.NAME, version = Multimeters.VERSION, dependencies = Multimeters.DEPENDENCIES, acceptedMinecraftVersions = Multimeters.ACCEPTED_MINECRAFT_VERSIONS)
+@Mod(modid = Multimeters.MODID, name = Multimeters.NAME, version = Multimeters.VERSION, dependencies = Multimeters.DEPENDENCIES, acceptedMinecraftVersions = Multimeters.ACCEPTED_MINECRAFT_VERSIONS, updateJSON = Multimeters.UPDATE_JSON)
 public class Multimeters {
 
     public static final String MODID = "multimeters";
@@ -21,7 +21,7 @@ public class Multimeters {
     public static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2]";
     public static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.ServerProxy";
     public static final String CLIENT_PROXY_CLASS = "cjminecraft.multimeters.proxy.ClientProxy";
-    public static final String VERSION_CHECKER_URL = "";
+    public static final String UPDATE_JSON = "https://raw.githubusercontent.com/CJMinecraft01/Multimeters/1.12/update.json";
     public static final Logger LOGGER = LogManager.getFormatterLogger(MODID);
 
     @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)
