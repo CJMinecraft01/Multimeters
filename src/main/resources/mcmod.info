@@ -1,0 +1,16 @@
+[
+{
+  "modid": "multimeters",
+  "name": "Multimeters",
+  "description": "Adds multimeters which can view details about tile entities without opening a GUI.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CJMinecraft"],
+  "credits": "CJCore",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
