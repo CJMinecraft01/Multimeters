@@ -47,10 +47,11 @@ public class OverlayInventory extends OverlayMultimeterBase {
     @Override
     public void updateOverlay(ItemStack inventory) {
         super.updateOverlay(inventory);
+        this.stacked = MultimetersConfig.GUI.ITEM_STACK_ITEMS;
         if (inventory.isEmpty()) {
             // Targeting a block
             if ((this.pos != null && !this.pos.equals(this.targetPos)) || this.side != this.targetSide) {
-                shouldSync(this.targetPos, this.targetSide, true);
+                shouldSync(this.targetPos, this.targetSide);
             }
         } else {
             // Targeting an item
@@ -92,7 +93,7 @@ public class OverlayInventory extends OverlayMultimeterBase {
         if (inventory == null)
             return this;
         if (inventory.size() != 0) {
-            int maxColumns = Math.min(MultimetersConfig.GUI.ITEM_MAX_COLUMNS, this.maxColumns);
+            int maxColumns = Math.max(MultimetersConfig.GUI.ITEM_MAX_COLUMNS, this.maxColumns);
 
             setVisible(true);
             this.itemSlots.clear();
@@ -123,15 +124,12 @@ public class OverlayInventory extends OverlayMultimeterBase {
      * @param pos     The position of the {@link TileEntity}
      * @param side    The targetSide of the {@link TileEntity} the inventory is found. For
      *                use with {@link ISidedInventory} and {@link Capability}
-     * @param stacked Whether the inventory should be "stacked". See
-     *                {@link InventoryUtils#getInventoryStacked(TileEntity, EnumFacing)}
      * @return The updated overlay
      */
-    public OverlayInventory shouldSync(BlockPos pos, EnumFacing side, boolean stacked) {
+    public OverlayInventory shouldSync(BlockPos pos, EnumFacing side) {
         this.shouldSync = true;
         this.pos = pos;
         this.side = side;
-        this.stacked = stacked;
         return this;
     }
 
@@ -176,7 +174,7 @@ public class OverlayInventory extends OverlayMultimeterBase {
                 element.drawBackground(0, 0, 0);
         }
 
-        if (this.fontRenderer.getStringWidth(this.targetedBlock.getStack().getDisplayName()) + 20 <= this.columns * 18)
+        if (!this.showOverlayText())
             this.fontRenderer.drawStringWithShadow(this.targetedBlock.getStack().getDisplayName(), 20, this.rows * 18 + (this.excessColumns > 0 ? 18 : 0) + 4.5F, 0xFFFFFF);
 
         GlStateManager.popMatrix();

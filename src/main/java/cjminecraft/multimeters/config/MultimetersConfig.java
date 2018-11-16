@@ -32,6 +32,10 @@ public class MultimetersConfig {
         @Config.Comment({"The maximum number of columns per row", "for the item multimeter"})
         @Config.RangeInt(min = 1)
         public int ITEM_MAX_COLUMNS = 9;
+        @Config.Name("ItemStackItems")
+        @Config.LangKey("gui.config.gui.item_stack_items")
+        @Config.Comment({"Whether to stack all of the items of the same type", "together or to leave them separate"})
+        public boolean ITEM_STACK_ITEMS = true;
         @Config.Name("EnergyBarWidth")
         @Config.LangKey("gui.config.gui.energy_bar_width")
         @Config.Comment({"The width of the energy bar", "for the energy multimeter"})

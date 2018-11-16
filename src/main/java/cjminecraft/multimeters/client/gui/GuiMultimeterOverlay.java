@@ -91,6 +91,8 @@ public class GuiMultimeterOverlay extends GuiOverlay {
         List<String> overlayText = new ArrayList<>();
         for (OverlayBase overlay : this.overlays) {
             if (overlay.isEnabled() && overlay.isVisible()) {
+                if (overlay == this.inventoryOverlay && !this.inventoryOverlay.showOverlayText())
+                    continue;
                 for (ElementBase element : overlay.getElements()) {
                     if (element instanceof ISpecialOverlayElement && element.isVisible()) {
                         ((ISpecialOverlayElement) element).drawSpecialLayer();

@@ -6,3 +6,13 @@ item.multimeter.tooltip.blockpos=Targeting block %s at %s, %s, %s on face %s
 item.multimeter.tooltip.energy=The multimeter allows users to see energy inside of any block without actually opening their gui! Sneak right click on a block to set the target block so the multimeter will only show the energy inside of that block. By right clicking air, the target block will reset
 item.multimeter.tooltip.item=The multimeter allows users to see the inventory inside of any block without actually opening their gui! Sneak right click on a block to set the target block so the multimeter will only show the inventory inside of that block. By right clicking air, the target block will reset
 item.multimeter.tooltip.fluid=The multimeter allows users to see the fluids inside of any block without actually opening their gui! Sneak right click on a block to set the target block so the multimeter will only show the fluids inside of that block. By right clicking air, the target block will reset
+
+gui.config.category.gui=Gui
+gui.config.gui.offset_x=X Offset
+gui.config.gui.offset_y=Y Offset
+gui.config.gui.item_max_columns=Item Multimeter Max Columns
+gui.config.gui.item_stack_items=Item Multimeter Stack Items
+gui.config.gui.energy_bar_width=Energy Multimeter Width
+gui.config.gui.energy_bar_height=Energy Multimeter Height
+gui.config.gui.fluid_bar_width=Fluid Multimeter Width
+gui.config.gui.fluid_bar_width=Fluid Multimeter Height
