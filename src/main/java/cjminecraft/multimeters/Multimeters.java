@@ -21,9 +21,9 @@ public class Multimeters {
     public static final String MODID = "multimeters";
     static final String NAME = "Multimeters";
     static final String VERSION = "${version}";
-    static final String DEPENDENCIES = "before:cjcore@[0.0.5.0,)";
+    static final String DEPENDENCIES = "before:cjcore@[0.0.5.1,)";
     static final String ACCEPTED_MINECRAFT_VERSIONS = "[1.12,1.12.2]";
-    private static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.ServerProxy";
+    private static final String SERVER_PROXY_CLASS = "cjminecraft.multimeters.proxy.CommonProxy";
     private static final String CLIENT_PROXY_CLASS = "cjminecraft.multimeters.proxy.ClientProxy";
     static final String UPDATE_JSON = "https://raw.githubusercontent.com/CJMinecraft01/Multimeters/1.12/update.json";
     public static final Logger LOGGER = LogManager.getFormatterLogger(MODID);

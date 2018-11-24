@@ -1,7 +1,9 @@
 package cjminecraft.multimeters.init;
 
+import cjminecraft.core.util.registries.AutomaticRegistrar;
 import cjminecraft.core.util.registries.Register;
 import cjminecraft.multimeters.Multimeters;
+import cjminecraft.multimeters.enums.EnumMultimeterType;
 import cjminecraft.multimeters.items.ItemMultimeter;
 
 /**
@@ -13,8 +15,8 @@ import cjminecraft.multimeters.items.ItemMultimeter;
 @Register(modid = Multimeters.MODID)
 public class MultimetersItems {
 
-	@Register.RegisterItem(registryName = "multimeter", setUnlocalizedName = true, unlocalizedName = "multimeter")
-	@Register.RegisterRender(hasVariants = true, variants = { "multimeter_energy", "multimeter_item", "multimeter_fluid" })
+	@Register.RegisterItem(registryName = "multimeter")
+	@Register.RegisterRender(variantPrefix = "multimeter_", variantEnum = EnumMultimeterType.class)
 	public static ItemMultimeter multimeter;
 
 }

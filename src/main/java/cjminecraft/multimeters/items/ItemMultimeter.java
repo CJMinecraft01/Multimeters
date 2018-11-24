@@ -7,6 +7,7 @@ import cjminecraft.core.items.ItemMeta;
 import cjminecraft.multimeters.enums.EnumMultimeterType;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,6 +40,7 @@ public class ItemMultimeter extends ItemMeta<EnumMultimeterType> {
     public ItemMultimeter() {
         super(EnumMultimeterType.class); // The enum class the item uses
         setMaxStackSize(1); // Set the max stack size
+        setCreativeTab(CreativeTabs.REDSTONE);
     }
 
     /**
